@@ -3,10 +3,6 @@ import { Container, Row, Col, Form } from 'react-bootstrap';
 import api from '../api/axios';
 import BrandAssetsView from '../components/BrandAssetsView';
 
-<<<<<<< Updated upstream
-// .env file se URL get kar rahe hain
-=======
->>>>>>> Stashed changes
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const LandingPage = () => {
@@ -51,36 +47,17 @@ const LandingPage = () => {
     let photoString = '';
     if (emp.profile_pic_path) {
       try {
-<<<<<<< Updated upstream
-        // Yahan hardcoded localhost ki jagah BACKEND_URL lagaya hai
-        const response = await fetch(`${BACKEND_URL}/${emp.profile_pic_path}`);
-        const blob = await response.blob();
-        
-        // Image ki type (jpeg ya png) nikalna
-        const mimeType = blob.type.split('/')[1].toUpperCase(); 
-        
-        const base64data = await new Promise((resolve) => {
-          const reader = new FileReader();
-          reader.onloadend = () => {
-            // Sirf base64 string nikalna, metadata nahi
-=======
         const response = await fetch(`${BACKEND_URL}/${emp.profile_pic_path}`);
         const blob = await response.blob();
         const mimeType = blob.type.split('/')[1].toUpperCase(); 
         const base64data = await new Promise((resolve) => {
           const reader = new FileReader();
           reader.onloadend = () => {
->>>>>>> Stashed changes
             const base64 = reader.result.split(',')[1];
             resolve(base64);
           };
           reader.readAsDataURL(blob);
         });
-<<<<<<< Updated upstream
-        
-        // VCF 3.0 Standard Encoding
-=======
->>>>>>> Stashed changes
         photoString = `\nPHOTO;ENCODING=b;TYPE=${mimeType}:${base64data}`;
       } catch (error) {
         console.error("Failed to load image for VCF", error);
@@ -99,9 +76,6 @@ const LandingPage = () => {
     document.body.removeChild(link);
   };
 
-<<<<<<< Updated upstream
-  if (loading) return <div className="text-center mt-5 p-5">Loading All Brand Assets...</div>;
-=======
   // --- SKELETON LOADING UI ---
   if (loading) {
     return (
@@ -160,7 +134,6 @@ const LandingPage = () => {
     );
   }
   // --- END SKELETON LOADING UI ---
->>>>>>> Stashed changes
 
   return (
     <div style={{ backgroundColor: '#ffffff', minHeight: '100vh', color: '#2a3b4c', paddingBottom: '100px' }}>

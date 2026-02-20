@@ -9,13 +9,6 @@ import ManageAssets from '../components/ManageAssets';
 
 const AdminDashboard = () => {
   const [companies, setCompanies] = useState([]);
-<<<<<<< Updated upstream
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!localStorage.getItem('adminId')) navigate('/login');
-    else fetchCompanies();
-=======
   const [isLoading, setIsLoading] = useState(true); // Data loading state
   const navigate = useNavigate();
 
@@ -25,16 +18,10 @@ const AdminDashboard = () => {
     } else {
       fetchCompanies();
     }
->>>>>>> Stashed changes
   }, [navigate]);
 
   const fetchCompanies = async () => {
     try {
-<<<<<<< Updated upstream
-      const res = await api.get('/dashboard/companies');
-      setCompanies(res.data);
-    } catch (err) { console.error(err); }
-=======
       setIsLoading(true); // Fetching shuru
       const res = await api.get('/dashboard/companies');
       setCompanies(res.data);
@@ -43,7 +30,6 @@ const AdminDashboard = () => {
     } finally {
       setIsLoading(false); // Fetching khatam (chahe error aye ya success)
     }
->>>>>>> Stashed changes
   };
 
   const handleLogout = () => {
@@ -88,36 +74,6 @@ const AdminDashboard = () => {
     alert('Employee & QR Generated!');
   };
 
-<<<<<<< Updated upstream
-  return (
-    <div className="bg-light min-vh-100">
-      <nav className="navbar navbar-dark bg-primary-dark p-3 px-5 d-flex justify-content-between">
-        <h3 className="text-white brand-font m-0">Xchart Admin Panel</h3>
-        <button className="btn btn-danger btn-sm" onClick={handleLogout}>Logout</button>
-      </nav>
-
-      <Container className="mt-5">
-        <Card className="admin-card p-4">
-          <Tabs defaultActiveKey="company" className="mb-4">
-            <Tab eventKey="company" title="Add Brand Profile">
-              <CompanyForm comp={comp} setComp={setComp} submitCompany={submitCompany} />
-            </Tab>
-            <Tab eventKey="asset" title="Upload Assets">
-              <AssetForm companies={companies} setAssetCompanyId={setAssetCompanyId} assetName={assetName} setAssetName={setAssetName} setAssetFile={setAssetFile} setPreviewImages={setPreviewImages} submitAsset={submitAsset} />
-            </Tab>
-            <Tab eventKey="manage_assets" title="Manage Assets">
-              <ManageAssets />
-            </Tab>
-            <Tab eventKey="employee" title="Add Employee (QR)">
-              <EmployeeForm companies={companies} empData={empData} setEmpData={setEmpData} setEmpPic={setEmpPic} submitEmployee={submitEmployee} />
-            </Tab>
-          </Tabs>
-        </Card>
-      </Container>
-    </div>
-  );
-};
-=======
   // --- SKELETON LOADING UI ---
   if (isLoading) {
     return (
@@ -248,5 +204,4 @@ const AdminDashboard = () => {
   );
 };
 
->>>>>>> Stashed changes
 export default AdminDashboard;
