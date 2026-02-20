@@ -1,15 +1,20 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
+<<<<<<< Updated upstream
 
 // .env file se backend ka URL get kar rahe hain
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
+=======
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+>>>>>>> Stashed changes
 const BrandAssetsView = ({ activeCompany, assets }) => {
   return (
     <>
       {/* Logos & Assets Section */}
       <div className="mb-5">
         <h2 className="fw-bold border-bottom pb-2 mb-4" style={{ color: activeCompany.primary_color_hex, fontSize: '1.5rem' }}>Logos & Assets</h2>
+<<<<<<< Updated upstream
         
         {assets.length === 0 ? <p className="text-muted small">No assets uploaded yet.</p> : assets.map(asset => {
           const previews = asset.preview_images ? asset.preview_images.split(',') : [];
@@ -17,6 +22,12 @@ const BrandAssetsView = ({ activeCompany, assets }) => {
           return (
             <div key={asset.id} className="mb-5">
               
+=======
+        {assets.length === 0 ? <p className="text-muted small">No assets uploaded yet.</p> : assets.map(asset => {
+          const previews = asset.preview_images ? asset.preview_images.split(',') : [];
+          return (
+            <div key={asset.id} className="mb-5">
+>>>>>>> Stashed changes
               {/* Asset Name aur Download Button */}
               <div className="d-flex justify-content-between align-items-center mb-4">
                 <h5 className="fw-bold text-uppercase m-0" style={{ letterSpacing: '0.5px', color: activeCompany.primary_color_hex }}>{asset.asset_name}</h5>
@@ -24,22 +35,34 @@ const BrandAssetsView = ({ activeCompany, assets }) => {
                   href={`${BACKEND_URL}/${asset.file_path}`} 
                   download 
                   className="btn btn-sm shadow-sm" 
+<<<<<<< Updated upstream
                   style={{ backgroundColor: activeCompany.secondary_color_hex, color: activeCompany.primary_color_hex, fontWeight: 'bold', padding: '8px 20px', borderRadius: '4px', border: `1px solid ${activeCompany.secondary_color_hex}` }} 
+=======
+                  style={{  backgroundColor: activeCompany.primary_color_hex, fontWeight: 'bold', padding: '8px 20px', borderRadius: '4px', border: `1px solid ${activeCompany.secondary_color_hex}` }} 
+>>>>>>> Stashed changes
                   target="_blank" rel="noreferrer"
                 >
                   Download .zip Archive
                 </a>
               </div>
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
               {previews.length > 0 ? (
                 <div>
                   {previews.map((imgUrl, idx) => {
                     // Logic to replicate Xchart Brand Guide layout
                     let bgColor = idx % 2 === 0 ? activeCompany.primary_color_hex : '#ffffff';
+<<<<<<< Updated upstream
                     let borderColor = idx % 2 === 0 ? activeCompany.primary_color_hex : '#e9ecef';
                     let sectionTitle = idx === 0 ? "Full Logo" : idx === 1 ? "Full Logo on white" : "Icons";
 
                     // 3rd Image ko Icon (Square) format mein dikhana hai
+=======
+                    let borderColor = idx % 2 === 0 ? activeCompany.primary_color_hex : '#c8c8c8';
+                    let sectionTitle = idx === 0 ? "Full Logo" : idx === 1 ? "Full Logo on white" : "Icons";
+>>>>>>> Stashed changes
                     if (idx >= 2) {
                       return (
                         <div key={idx} className="mb-5">
@@ -59,6 +82,7 @@ const BrandAssetsView = ({ activeCompany, assets }) => {
                         </div>
                       );
                     }
+<<<<<<< Updated upstream
 
                     // 1st aur 2nd Image ko 4 different sizes mein dikhana hai
                     return (
@@ -66,13 +90,21 @@ const BrandAssetsView = ({ activeCompany, assets }) => {
                         <h6 className="text-muted mb-3">{sectionTitle}</h6>
 
                         {/* Large Size: 1920 x 540 */}
+=======
+                    return (
+                      <div key={idx} className="mb-5">
+                        <h6 className="text-muted mb-3">{sectionTitle}</h6>
+>>>>>>> Stashed changes
                         <div className="mb-4">
                           <div className="d-flex align-items-center justify-content-center shadow-sm p-4" style={{ backgroundColor: bgColor, border: `1px solid ${borderColor}`, borderRadius: '4px', width: '100%' }}>
                             <img src={`${BACKEND_URL}/${imgUrl}`} alt="Preview 1920" style={{ maxHeight: '140px', maxWidth: '100%', objectFit: 'contain' }} />
                           </div>
                           <small className="text-muted mt-1 d-block">1920 x 540</small>
                         </div>
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
                         {/* Medium Size: 960 x 270 */}
                         <div className="mb-4">
                           <div className="d-flex align-items-center justify-content-center shadow-sm p-3" style={{ backgroundColor: bgColor, border: `1px solid ${borderColor}`, borderRadius: '4px', width: '75%' }}>
@@ -80,8 +112,11 @@ const BrandAssetsView = ({ activeCompany, assets }) => {
                           </div>
                           <small className="text-muted mt-1 d-block">960 x 270</small>
                         </div>
+<<<<<<< Updated upstream
 
                         {/* Small & XS Sizes: 480 x 135 and 360 x 100 */}
+=======
+>>>>>>> Stashed changes
                         <Row>
                           <Col md={6} className="mb-3">
                             <div className="d-flex align-items-center justify-content-center shadow-sm p-3" style={{ backgroundColor: bgColor, border: `1px solid ${borderColor}`, borderRadius: '4px', width: '100%' }}>
@@ -109,8 +144,11 @@ const BrandAssetsView = ({ activeCompany, assets }) => {
           );
         })}
       </div>
+<<<<<<< Updated upstream
 
       {/* Colors & Fonts Section */}
+=======
+>>>>>>> Stashed changes
       <div className="mb-5">
         <h2 className="fw-bold border-bottom pb-2 mb-4" style={{ color: activeCompany.primary_color_hex, fontSize: '1.5rem' }}>Colors & Fonts</h2>
         <Row className="mb-5">
@@ -133,5 +171,8 @@ const BrandAssetsView = ({ activeCompany, assets }) => {
     </>
   );
 };
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 export default BrandAssetsView;

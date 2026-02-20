@@ -3,7 +3,10 @@ import { Container, Row, Col, Form } from 'react-bootstrap';
 import api from '../api/axios';
 import BrandAssetsView from '../components/BrandAssetsView';
 
+<<<<<<< Updated upstream
 // .env file se URL get kar rahe hain
+=======
+>>>>>>> Stashed changes
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const LandingPage = () => {
@@ -48,6 +51,7 @@ const LandingPage = () => {
     let photoString = '';
     if (emp.profile_pic_path) {
       try {
+<<<<<<< Updated upstream
         // Yahan hardcoded localhost ki jagah BACKEND_URL lagaya hai
         const response = await fetch(`${BACKEND_URL}/${emp.profile_pic_path}`);
         const blob = await response.blob();
@@ -59,13 +63,24 @@ const LandingPage = () => {
           const reader = new FileReader();
           reader.onloadend = () => {
             // Sirf base64 string nikalna, metadata nahi
+=======
+        const response = await fetch(`${BACKEND_URL}/${emp.profile_pic_path}`);
+        const blob = await response.blob();
+        const mimeType = blob.type.split('/')[1].toUpperCase(); 
+        const base64data = await new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+>>>>>>> Stashed changes
             const base64 = reader.result.split(',')[1];
             resolve(base64);
           };
           reader.readAsDataURL(blob);
         });
+<<<<<<< Updated upstream
         
         // VCF 3.0 Standard Encoding
+=======
+>>>>>>> Stashed changes
         photoString = `\nPHOTO;ENCODING=b;TYPE=${mimeType}:${base64data}`;
       } catch (error) {
         console.error("Failed to load image for VCF", error);
@@ -84,7 +99,68 @@ const LandingPage = () => {
     document.body.removeChild(link);
   };
 
+<<<<<<< Updated upstream
   if (loading) return <div className="text-center mt-5 p-5">Loading All Brand Assets...</div>;
+=======
+  // --- SKELETON LOADING UI ---
+  if (loading) {
+    return (
+      <div style={{ backgroundColor: '#ffffff', minHeight: '100vh', paddingBottom: '100px' }}>
+        {/* Fake Filter Bar */}
+        <div className="bg-light py-3 border-bottom placeholder-glow" style={{ boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
+          <Container className="d-flex justify-content-end align-items-center">
+            <span className="placeholder col-2 me-3 rounded"></span>
+            <span className="placeholder col-3 rounded" style={{ height: '30px', width: '250px' }}></span>
+          </Container>
+        </div>
+
+        {/* Fake Brand Section (2 fake brands for skeleton effect) */}
+        {[1, 2].map((fakeBrand, index) => (
+          <div key={fakeBrand} className="placeholder-glow">
+            {index > 0 && <hr style={{ borderTop: '8px solid #f1f3f5', margin: '80px 0' }} />}
+            <Container className="py-5" style={{ maxWidth: '960px' }}>
+              {/* Fake Title & Subtitle */}
+              <div className="mb-5">
+                <h1 className="placeholder col-6 mb-3 rounded" style={{ height: '40px' }}></h1><br/>
+                <p className="placeholder col-8 mb-2 rounded"></p><br/>
+                <p className="placeholder col-5 rounded"></p>
+              </div>
+
+              {/* Fake BrandAssetsView Boxes */}
+              <div className="mb-5">
+                <Row>
+                  {[1, 2, 3].map(box => (
+                    <Col md={4} key={box} className="mb-3">
+                      <div className="placeholder w-100 rounded" style={{ height: '150px' }}></div>
+                    </Col>
+                  ))}
+                </Row>
+              </div>
+
+              {/* Fake Scannable Contact Cards */}
+              <div className="mb-5">
+                <h2 className="placeholder col-4 mb-4 rounded" style={{ height: '30px' }}></h2>
+                <Row>
+                  {[1, 2].map(card => (
+                    <Col md={6} key={card} className="mb-5">
+                      <div className="d-flex flex-column align-items-start">
+                        <h6 className="placeholder col-5 mb-3 rounded"></h6>
+                        <div className="placeholder col-7 mb-3 rounded" style={{ height: '35px' }}></div>
+                        {/* Fake QR Code Box */}
+                        <div className="placeholder rounded" style={{ width: '220px', height: '220px' }}></div>
+                      </div>
+                    </Col>
+                  ))}
+                </Row>
+              </div>
+            </Container>
+          </div>
+        ))}
+      </div>
+    );
+  }
+  // --- END SKELETON LOADING UI ---
+>>>>>>> Stashed changes
 
   return (
     <div style={{ backgroundColor: '#ffffff', minHeight: '100vh', color: '#2a3b4c', paddingBottom: '100px' }}>

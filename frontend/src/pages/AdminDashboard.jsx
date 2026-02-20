@@ -9,18 +9,41 @@ import ManageAssets from '../components/ManageAssets';
 
 const AdminDashboard = () => {
   const [companies, setCompanies] = useState([]);
+<<<<<<< Updated upstream
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!localStorage.getItem('adminId')) navigate('/login');
     else fetchCompanies();
+=======
+  const [isLoading, setIsLoading] = useState(true); // Data loading state
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem('adminId')) {
+      navigate('/login');
+    } else {
+      fetchCompanies();
+    }
+>>>>>>> Stashed changes
   }, [navigate]);
 
   const fetchCompanies = async () => {
     try {
+<<<<<<< Updated upstream
       const res = await api.get('/dashboard/companies');
       setCompanies(res.data);
     } catch (err) { console.error(err); }
+=======
+      setIsLoading(true); // Fetching shuru
+      const res = await api.get('/dashboard/companies');
+      setCompanies(res.data);
+    } catch (err) { 
+      console.error(err); 
+    } finally {
+      setIsLoading(false); // Fetching khatam (chahe error aye ya success)
+    }
+>>>>>>> Stashed changes
   };
 
   const handleLogout = () => {
@@ -65,6 +88,7 @@ const AdminDashboard = () => {
     alert('Employee & QR Generated!');
   };
 
+<<<<<<< Updated upstream
   return (
     <div className="bg-light min-vh-100">
       <nav className="navbar navbar-dark bg-primary-dark p-3 px-5 d-flex justify-content-between">
@@ -93,4 +117,136 @@ const AdminDashboard = () => {
     </div>
   );
 };
+=======
+  // --- SKELETON LOADING UI ---
+  if (isLoading) {
+    return (
+      <div className="bg-light min-vh-100">
+        {/* Fake Navbar */}
+        <nav className="navbar navbar-dark p-3 px-5 d-flex justify-content-between shadow-sm placeholder-glow" style={{ background: 'linear-gradient(135deg, #1e3c72, #2a5298)' }}>
+          <span className="placeholder col-2 rounded" style={{ height: '30px', backgroundColor: 'rgba(255,255,255,0.7)' }}></span>
+          <span className="placeholder col-1 rounded" style={{ height: '35px', backgroundColor: 'rgba(255,255,255,0.7)' }}></span>
+        </nav>
+
+        {/* Fake Dashboard Body */}
+        <Container className="mt-5 placeholder-glow">
+          <Card className="border-0 shadow-lg p-4" style={{ borderRadius: '15px' }}>
+            {/* Fake Tabs */}
+            <div className="d-flex gap-3 mb-4 border-bottom pb-3">
+              <span className="placeholder col-2 rounded-pill" style={{ height: '40px' }}></span>
+              <span className="placeholder col-2 rounded-pill" style={{ height: '40px' }}></span>
+              <span className="placeholder col-2 rounded-pill" style={{ height: '40px' }}></span>
+              <span className="placeholder col-2 rounded-pill" style={{ height: '40px' }}></span>
+            </div>
+            {/* Fake Form Fields */}
+            <div className="py-3">
+              <span className="placeholder col-3 rounded mb-4 d-block" style={{ height: '25px' }}></span>
+              <span className="placeholder col-12 rounded mb-3 d-block" style={{ height: '45px' }}></span>
+              <span className="placeholder col-12 rounded mb-3 d-block" style={{ height: '45px' }}></span>
+              <span className="placeholder col-12 rounded mb-3 d-block" style={{ height: '45px' }}></span>
+              <span className="placeholder col-2 rounded mt-4 d-block" style={{ height: '45px' }}></span>
+            </div>
+          </Card>
+        </Container>
+      </div>
+    );
+  }
+  // --- END SKELETON UI ---
+
+  return (
+    <>
+      {/* Custom Styles for Dashboard */}
+      <style>
+        {`
+          .custom-navbar {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+          }
+          .dashboard-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            background: #ffffff;
+          }
+          /* Customizing React-Bootstrap Tabs */
+          .custom-tabs .nav-link {
+            color: #6c757d;
+            font-weight: 600;
+            border: none;
+            border-bottom: 3px solid transparent;
+            padding: 12px 20px;
+            transition: all 0.3s ease;
+          }
+          .custom-tabs .nav-link:hover {
+            color: #2a5298;
+            background-color: #f8f9fa;
+            border-radius: 8px 8px 0 0;
+          }
+          .custom-tabs .nav-link.active {
+            color: #1e3c72;
+            background-color: transparent;
+            border-color: #1e3c72; /* Underline effect for active tab */
+          }
+          .logout-btn {
+            background-color: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+          }
+          .logout-btn:hover {
+            background-color: #dc3545;
+            border-color: #dc3545;
+          }
+        `}
+      </style>
+
+      <div className="bg-light min-vh-100" style={{ paddingBottom: '50px' }}>
+        {/* Modern Header */}
+        <nav className="navbar custom-navbar p-3 px-4 px-md-5 d-flex justify-content-between sticky-top">
+          <div className="d-flex align-items-center">
+            <span className="me-2 fs-4">⚙️</span>
+            <h4 className="text-white brand-font m-0 fw-bold" style={{ letterSpacing: '0.5px' }}>Lacas Assets Admin</h4>
+          </div>
+          <button className="btn text-white btn-sm px-3 py-2 rounded-pill logout-btn fw-semibold" onClick={handleLogout}>
+            Logout
+          </button>
+        </nav>
+
+        {/* Main Content Area */}
+        <Container className="mt-5">
+          <Card className="dashboard-card p-4 p-md-5">
+            <Tabs defaultActiveKey="company" className="mb-4 custom-tabs flex-nowrap overflow-auto" style={{ borderBottom: '2px solid #e9ecef' }}>
+              
+              <Tab eventKey="company" title="🏢 Add Brand Profile">
+                <div className="animate__animated animate__fadeIn">
+                  <CompanyForm comp={comp} setComp={setComp} submitCompany={submitCompany} />
+                </div>
+              </Tab>
+              
+              <Tab eventKey="asset" title="📁 Upload Assets">
+                <div className="animate__animated animate__fadeIn">
+                  <AssetForm companies={companies} setAssetCompanyId={setAssetCompanyId} assetName={assetName} setAssetName={setAssetName} setAssetFile={setAssetFile} setPreviewImages={setPreviewImages} submitAsset={submitAsset} />
+                </div>
+              </Tab>
+              
+              <Tab eventKey="manage_assets" title="🛠️ Manage Assets">
+                <div className="animate__animated animate__fadeIn">
+                  <ManageAssets />
+                </div>
+              </Tab>
+              
+              <Tab eventKey="employee" title="📇 Add Employee (QR)">
+                <div className="animate__animated animate__fadeIn">
+                  <EmployeeForm companies={companies} empData={empData} setEmpData={setEmpData} setEmpPic={setEmpPic} submitEmployee={submitEmployee} />
+                </div>
+              </Tab>
+              
+            </Tabs>
+          </Card>
+        </Container>
+      </div>
+    </>
+  );
+};
+
+>>>>>>> Stashed changes
 export default AdminDashboard;
